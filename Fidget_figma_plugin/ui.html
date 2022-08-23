@@ -35,7 +35,7 @@ To do:
       console.log(request.response)
       parent.postMessage({ pluginMessage: { type: 'send-to-slack' } }, '*') //post this to code.ts
     };
-    request.open('POST', 'https://hooks.slack.com/services/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') // set the URL that we're sending to: https://api.slack.com/apps/A03T54CJVRQ/incoming-webhooks?success=1 
+    request.open('POST', 'https://SLACKWEBHOOKGOESHERE.com') // set the URL that we're sending to: https://api.slack.com/apps/A03T54CJVRQ/incoming-webhooks?success=1 
 
     // set the message we're sending to slack
     let message = `*<${requester}> is requesting a design review for <${fileURL} | ${fileName}>.*
