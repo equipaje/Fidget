@@ -1,0 +1,59 @@
+<!-- 
+To do:
+- Get slack handle for requester
+- Get slack handles for reviewers (maybe we should store name, figma user, slack user somewhere to reference)
+- Get the review description from the plugin
+- Authentication stuff to make the app work for Color's slack organization
+- Decide where to send the review notifications (e.g. only to a channel, to a channel and to a private bot chat, etc.)
+
+-->
+
+<!-- Build the UI -->
+<h1>Send a thing to Slack</h1>
+<button id="send">Send to Slack</button>
+<button id="cancel">Cancel</button>
+
+<!-- The logic & connecting to the backend -->
+<script>
+
+  // Initialize the variables
+  let requester = "@elise.livingston" // TODO: Actually get the requester slack handle
+  let reviewers = ['Reviewer 1', 'Reviewer 2', 'Reviewer 3', "Reviewer 4"] // TODO: Actually get the reviewer slack handles
+  let fileURL = ""
+  let fileName = "File name"
+  let reviewDescription = "A description of what the review is about." // TODO: Actually get the description
+
+  // Someone clicked Cancel
+  document.getElementById('cancel').onclick = () => {
+    parent.postMessage({ pluginMessage: { type: 'cancel' } }, '*')
+  }
+
+  // Someone clicked "Send to Slack"
+  document.getElementById('send').onclick = () => {
+    var request = new XMLHttpRequest() //create a new request
+    request.onload = () => { //when slack responds
+      console.log(request.response)
+      parent.postMessage({ pluginMessage: { type: 'send-to-slack' } }, '*') //post this to code.ts
+    };
+    request.open('POST', 'https://hooks.slack.com/services/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') // set the URL that we're sending to: https://api.slack.com/apps/A03T54CJVRQ/incoming-webhooks?success=1 
+
+    // set the message we're sending to slack
+    let message = `*<${requester}> is requesting a design review for <${fileURL} | ${fileName}>.*
+${reviewDescription}
+
+*Reviewers*
+- ${reviewers.join("\n- ")}`
+
+    request.send(JSON.stringify({ "text": message })); // send the message
+  }
+
+  // Receive the file data from the backend
+  onmessage = (event) => {
+    let fileData = event.data.pluginMessage
+    console.log(fileData)
+    fileURL = fileData[0]
+    fileName = fileData[1]
+
+  }
+
+</script>

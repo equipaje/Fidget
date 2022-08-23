@@ -1,0 +1,25 @@
+{
+  "name": "fidget",
+  "version": "1.0.0",
+  "description": "peer review slack app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/equipaje/Fidget.git"
+  },
+  "keywords": [
+    "figma"
+  ],
+  "author": "equipaje",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/equipaje/Fidget/issues"
+  },
+  "homepage": "https://github.com/equipaje/Fidget#readme",
+  "dependencies": {
+    "@slack/bolt": "^3.12.1"
+  }
+}

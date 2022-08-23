@@ -1,0 +1,11 @@
+{
+  "name": "slack-test",
+  "id": "1139257343134723501",
+  "api": "1.0.0",
+  "main": "code.js",
+  "editorType": [
+    "figma"
+  ],
+  "ui": "ui.html",
+  "enablePrivatePluginApi": true 
+}

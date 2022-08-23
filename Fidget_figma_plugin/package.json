@@ -1,0 +1,21 @@
+{
+  "name": "slack-test",
+  "version": "1.0.0",
+  "description": "Your Figma Plugin",
+  "main": "code.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "watch": "npm run build -- --watch"
+  },
+  "author": "",
+  "license": "",
+  "devDependencies": {
+    "@figma/plugin-typings": "^1.50.0",
+    "typescript": "*"
+  },
+  "dependencies": {
+    "@slack/webhook": "^6.1.0",
+    "node-fetch": "^3.2.10",
+    "superagent": "^8.0.0"
+  }
+}
